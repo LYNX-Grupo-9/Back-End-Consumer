@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Agendamento</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            margin: -30px -30px 20px -30px;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        .details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+        .detail-item {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+        }
+        .status-badge {
+            background-color: #27ae60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>✅ Solicitação Recebida</h1>
+        <p>Confirmação de Agendamento</p>
+    </div>
+
+    <div class="content">
+        <p>Olá <strong th:text="${nomeCliente}">[Nome do Cliente]</strong>,</p>
+
+        <p>Sua solicitação de agendamento foi recebida com sucesso e está em análise!</p>
+
+        <div class="status-badge">STATUS: EM ANÁLISE</div>
+
+        <div class="details">
+            <h3>📋 Detalhes da Solicitação:</h3>
+            <div class="detail-item">
+                <strong>Assunto:</strong> <span th:text="${assuntoConsulta}">[Assunto]</span>
+            </div>
+            <div class="detail-item">
+                <strong>Data solicitada:</strong> <span th:text="${dataConsulta}">[Data]</span>
+            </div>
+            <div class="detail-item">
+                <strong>Horário solicitado:</strong> <span th:text="${horaConsulta}">[Hora]</span>
+            </div>
+            <div th:if="${nomeAdvogado}" class="detail-item">
+                <strong>Advogado:</strong> <span th:text="${nomeAdvogado}">[Nome do Advogado]</span>
+            </div>
+        </div>
+
+        <p><strong>📞 Próximos Passos:</strong></p>
+        <ul>
+            <li>Nossa equipe irá analisar sua solicitação</li>
+            <li>Entraremos em contato para confirmar a disponibilidade</li>
+            <li>Você receberá uma confirmação definitiva em breve</li>
+        </ul>
+
+        <p>Caso necessite alterar ou cancelar este agendamento, entre em contato conosco.</p>
+    </div>
+
+    <div class="footer">
+        <p>Atenciosamente,<br>
+            <strong>Equipe de Agendamentos Jurídicos</strong></p>
+        <p>📧 contato@advogados.com.br | 📞 (11) 9999-9999</p>
+        <p style="font-size: 12px; color: #999;">
+            Este é um email automático, por favor não responda.
+        </p>
+    </div>
+</div>
+</body>
+</html>
