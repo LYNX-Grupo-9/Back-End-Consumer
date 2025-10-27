@@ -1,118 +1,38 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmação de Agendamento</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px 10px 0 0;
-            margin: -30px -30px 20px -30px;
-        }
-        .content {
-            padding: 20px 0;
-        }
-        .details {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-            margin: 20px 0;
-        }
-        .detail-item {
-            margin-bottom: 10px;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .detail-item:last-child {
-            border-bottom: none;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #666;
-            font-size: 14px;
-        }
-        .status-badge {
-            background-color: #27ae60;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
-            margin: 10px 0;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="header">
-        <h1>✅ Solicitação Recebida</h1>
-        <p>Confirmação de Agendamento</p>
-    </div>
-
-    <div class="content">
-        <p>Olá <strong th:text="${nomeCliente}">[Nome do Cliente]</strong>,</p>
-
-        <p>Sua solicitação de agendamento foi recebida com sucesso e está em análise!</p>
-
-        <div class="status-badge">STATUS: EM ANÁLISE</div>
-
-        <div class="details">
-            <h3>📋 Detalhes da Solicitação:</h3>
-            <div class="detail-item">
-                <strong>Assunto:</strong> <span th:text="${assuntoConsulta}">[Assunto]</span>
-            </div>
-            <div class="detail-item">
-                <strong>Data solicitada:</strong> <span th:text="${dataConsulta}">[Data]</span>
-            </div>
-            <div class="detail-item">
-                <strong>Horário solicitado:</strong> <span th:text="${horaConsulta}">[Hora]</span>
-            </div>
-            <div th:if="${nomeAdvogado}" class="detail-item">
-                <strong>Advogado:</strong> <span th:text="${nomeAdvogado}">[Nome do Advogado]</span>
-            </div>
+<div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; color: #333; background-color: #f5f5f5;" data-darkreader-inline-color="" data-darkreader-inline-bgcolor="">
+    <div style="max-width: 600px; margin: auto; background-color: #fff;" data-darkreader-inline-bgcolor="">
+        <div style="text-align: center; background-color: #333; padding: 14px;" data-darkreader-inline-bgcolor=""><a style="text-decoration: none; outline: none;" href="[Website Link]" target="_blank" rel="noopener" data-darkreader-inline-outline=""><img src="data:image/png;base64,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" width="57" height="57"></a><a style="text-decoration: none; outline: none;" href="[Website Link]" target="_blank" rel="noopener" data-darkreader-inline-outline="">&nbsp;</a></div>
+        <div style="padding: 14px;">
+            <h1 style="font-size: 22px; margin-bottom: 26px;">Solicita&ccedil;&atilde;o Recebida!&nbsp;</h1>
+            <hr data-start="237" data-end="240">
+            <p data-start="242" data-end="353"><strong data-start="242" data-end="260">Ol&aacute;</strong>, <span th:text="${nomeCliente}">[Nome do Cliente]</span></p>
+            <p data-start="242" data-end="353">Sua solicita&ccedil;&atilde;o de agendamento foi recebida com sucesso e est&aacute; em <strong>an&aacute;lise!</strong></p>
+            <h3 data-start="355" data-end="388"><strong data-start="361" data-end="388">Detalhes do Agendamento</strong></h3>
+            <ul data-start="389" data-end="504">
+                    <li>
+                        <p><strong>Assunto:</strong> <span th:text="${assuntoConsulta}">[Assunto]</span></p>
+                    </li>
+                    <li>
+                        <p><strong>Data solicitada:</strong> <span th:text="${dataConsulta}">[Data]</span></p>
+                    </li>
+                    <li>
+                        <p><strong>Horário solicitado:</strong> <span th:text="${horaConsulta}">[Hora]</span></p>
+                    </li>
+                    <li>
+                        <strong>Advogado:</strong> <span th:text="${nomeAdvogado}">[Nome do Advogado]</span>
+                    </li>
+            </ul>
+            <p data-start="506" data-end="593">&nbsp;</p>
+            <p data-start="786" data-end="904"><strong data-start="786" data-end="805">📞 Pr&oacute;ximos passos:</strong></p>
+            <ul>
+                <li data-start="786" data-end="904">Nossa equipe ir&aacute; analisar sua solicita&ccedil;&atilde;o&nbsp;</li>
+                <li data-start="786" data-end="904">Entraremos em contato para confirmar a disponibilidade&nbsp;</li>
+                <li data-start="786" data-end="904">Voc&ecirc; receber&aacute; uma confirma&ccedil;&atilde;o definitiva em breve</li>
+            </ul>
+            <p>Caso necessite alterar ou cancelar este agendamento, entre em contato conosco</p>
+            <p data-start="906" data-end="958">Agradecemos pela confian&ccedil;a!<br data-start="933" data-end="936"><strong data-start="936" data-end="958">Equipe Alvany Figueredo&nbsp;</strong></p>
         </div>
-
-        <p><strong>📞 Próximos Passos:</strong></p>
-        <ul>
-            <li>Nossa equipe irá analisar sua solicitação</li>
-            <li>Entraremos em contato para confirmar a disponibilidade</li>
-            <li>Você receberá uma confirmação definitiva em breve</li>
-        </ul>
-
-        <p>Caso necessite alterar ou cancelar este agendamento, entre em contato conosco.</p>
     </div>
-
-    <div class="footer">
-        <p>Atenciosamente,<br>
-            <strong>Equipe de Agendamentos Jurídicos</strong></p>
-        <p>📧 contato@advogados.com.br | 📞 (11) 9999-9999</p>
-        <p style="font-size: 12px; color: #999;">
-            Este é um email automático, por favor não responda.
-        </p>
+    <div style="max-width: 600px; margin: auto;">
+        <p style="color: #999; font-size: 12px;" data-darkreader-inline-color="">&nbsp;</p>
     </div>
 </div>
-</body>
-</html>
